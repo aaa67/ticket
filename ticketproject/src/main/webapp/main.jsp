@@ -147,7 +147,7 @@ body {
 	<table border="1">
 		<c:forEach var="show" items="${showlist}">
 			<tr>
-				<td><a href="${path}/boardDetail.do?bno=${show.id}"><img
+				<td><a href="${path}/showList"><img
 						src="" alt="show image"></a></td>
 				<td>${show.performer}</td>
 				<td>${show.name}</td>
