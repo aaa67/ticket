@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.shinhan.crud.service.showService;
+
 /**
  * Servlet implementation class mainServlet
  */
@@ -17,9 +19,12 @@ public class mainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("main.jsp");
-		rd.forward(request, response);
+		
+		showService service = new showService();
+		request.setAttribute("showlist", service.selectAllShow());
+		
+		request.getRequestDispatcher("main.jsp").forward(request, response);
+
 	}
 
 	/**

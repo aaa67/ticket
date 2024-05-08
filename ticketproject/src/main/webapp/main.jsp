@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,9 +83,12 @@
 }
 </style> -->
 
+    
 </head>
 
 <body>
+	<c:set var="path"
+		value="${pageContext.request.servletContext.contextPath}" />
 	<nav class="topmenu">
 		<ul class="nav">
 			<li><img src="static/image/logo.png" alt="logo" class="logo"></li>
@@ -96,7 +100,20 @@
 
 	<div class="search">
 		<input type="text" placeholder="공연명 혹은 가수명을 입력하세요">
-		<img src="hstatic/image/search.png" alt="search">
+		<button type="button">
+			<img src="static/image/search.png" alt="search">
+		</button>
 	</div>
+
+	<table border="1">
+		<c:forEach var="show" items="${showlist}">
+			<tr>
+				<td><a href="${path}/boardDetail.do?bno=${show.id}"><img
+						src="" alt="show image"></a></td>
+				<td>${show.performer}</td>
+				<td>${show.name}</td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>
