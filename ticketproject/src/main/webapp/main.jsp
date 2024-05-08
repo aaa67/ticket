@@ -5,83 +5,119 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>공연 예매</title>
 
-<!--<style>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .topmenu {
-	position: absolute;
-	width: 1920px;
-	height: 94px;
-	left: 0px;
-	top: 0px;
-	background: #000000;
+    background: #000000;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 .logo {
-	position: absolute;
-	width: 54px; height : 54px; left : 30px;
-	top: 20px;
-	height: 54px;
-	left: 30px;
+    width: 60px; 
+    padding-left: 20px;
 }
 
+.nav li {
+    margin-right: 20px;
+}
+
+.nav li:last-child {
+    margin-right: 0;
+}
+
+.nav a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.admin, .user {
+    font-family: 'Jua', sans-serif;
+    font-size: 22px;
+    color: #FFFFFF;
+    margin-left: auto;
+    padding: 0 40px;
+    
+}
+
+/* 공연예매 링크 스타일 */
 .main {
-	position: absolute;
-	width: 149px;
-	height: 51px;
-	left: 97px;
-	top: 20px;
-	font-family: 'Bagel Fat One';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 35px;
-	line-height: 51px;
-	/* identical to box height */
-	display: flex;
-	align-items: center;
-	text-align: center;
-	color: #FFFFFF;
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Bagel Fat One', sans-serif;
+    font-size: 30px;
+    color: #FFFFFF;
 }
 
-
-
-
-.admin {
-	position: absolute;
-	width: 74px;
-	height: 38px;
-	left: 1606px;
-	top: 31px;
-	font-family: 'Jua';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 30px;
-	line-height: 38px;
-	/* identical to box height */
-	display: flex;
-	align-items: center;
-	text-align: center;
-	color: #FFFFFF;
+/* 검색창 */
+.search {
+    position: absolute;
+    width: 100%; /* 화면에 꽉 차도록 설정 */
+    height: 125px;
+    background: #FF7575;
+    top: 85px; /* 이전 요소와의 간격 조정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.user {
-	position: absolute;
-	width: 74px;
-	height: 38px;
-	left: 1750px;
-	top: 31px;
-	font-family: 'Jua';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 30px;
-	line-height: 38px;
-	/* identical to box height */
-	display: flex;
-	align-items: center;
-	text-align: center;
-	color: #FFFFFF;
+.search-container {
+    position: relative;
 }
-</style> -->
+
+.search input[type="text"] {
+    box-sizing: border-box;
+    width: calc(100% - 360px); /* 버튼을 고려한 너비 조절 */
+    height: 49px;
+    padding: 0 20px;
+    margin-left: 20px; /* 왼쪽 여백 조절 */
+    background: #F2F2F2;
+    border: 1px solid #FFFFFF;
+    border-radius: 25px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    color: #B2B2B2;
+    outline: none; /* 포커스 시 테두리 제거 */
+}
+
+.search button {
+    position: absolute;
+    top: 50%;
+    right: 200px; /* 오른쪽 여백 조절 */
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #F2F2F2;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.search button img {
+    width: 20px; /* 이미지 크기 조절 */
+    height: auto;
+    margin: 10px; /* 이미지 내부 여백 추가 */
+}
+
+</style>
 
     
 </head>
@@ -89,10 +125,13 @@
 <body>
 	<c:set var="path"
 		value="${pageContext.request.servletContext.contextPath}" />
+		
 	<nav class="topmenu">
 		<ul class="nav">
-			<li><img src="static/image/logo.png" alt="logo" class="logo"></li>
-			<li><a href="" class="main"> 공연예매 </a></li>
+            <li><a href=""><img src="static/image/logo.png" alt="logo" class="logo"></a></li>
+			 <li><a href="" class="main"> 공연예매 </a></li>
+			 </ul>
+        <ul class="nav right-align"> 
 			<li><a href="auth/adminLogin.jsp" class="admin"> 관리자 </a></li>
 			<li><a href="auth/userLogin.jsp" class="user"> 사용자 </a></li>
 		</ul>
