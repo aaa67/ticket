@@ -6,58 +6,46 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.shinhan.crud.dto.loginDTO;
-import com.shinhan.crud.dto.signoutDTO;
-import com.shinhan.crud.dto.userDTO;
+import com.shinhan.crud.dto.LoginDTO;
+import com.shinhan.crud.dto.SignoutDTO;
+import com.shinhan.crud.dto.UserDTO;
 import com.shinhan.crud.util.DBUtil;
 import com.shinhan.crud.util.DateUtil;
 
-public class userDAO {
+public class UserDAO {
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
 	ResultSet rs;
-	
-
 
 	// 1. 고객 회원가입
-	public String userSignup(userDTO user) {
-		int result = 0;
-		String signup = null;
+	public int userSignup(UserDTO user) {
+		
+		int result=0;
 		conn = DBUtil.dbConnection(); // setAutoCommit(true)되었음
 
 		try {
-			String sql = "select * from member where id=?";
+			String sql = "insert into member values (?,?,?,?,?)";
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, user.getId());
-			rs = pst.executeQuery();
-
-			if (rs.next()) {
-				signup = "이미 존재하는 아이디입니다.";
-			} else {
-				sql = "insert into member values (?,?,?,?,?)";
-				pst = conn.prepareStatement(sql);
-				pst.setString(1, user.getId());
-				pst.setInt(2, user.getPw());
-				pst.setString(3, user.getName());
-				pst.setString(4, user.getAddress());
-				pst.setDate(5, user.getBirth());
-				result = pst.executeUpdate();
-				if (result > 0) {
-					signup = "회원가입이 완료되었습니다.";
-				}
-			}
+			pst.setInt(2, user.getPw());
+			pst.setString(3, user.getName());
+			pst.setString(4, user.getAddress());
+			pst.setDate(5, user.getBirth());
+			result = pst.executeUpdate();
+		 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			result = -1;
 		} finally {
 			DBUtil.dbDisconnect(conn, pst, rs);
 		}
-		return signup;
+		return result;
 	}
-
+		
 	// 2. 고객 로그인
-	public userDTO userLogin(loginDTO login) {
-		userDTO user=null;
+	public UserDTO userLogin(LoginDTO login) {
+		UserDTO user=null;
 		conn = DBUtil.dbConnection();
 		
 		try {
@@ -68,7 +56,7 @@ public class userDAO {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 				if(rs.getInt("pw")==(login.getPw())) {
-					user=new userDTO();
+					user=new UserDTO();
 					user.setId(rs.getString("id"));
 					user.setPw(rs.getInt("pw"));
 					user.setName(rs.getString("name"));
@@ -77,12 +65,12 @@ public class userDAO {
 					//user.set
 				}
 				else { //비밀번호 오류
-					user=new userDTO();
+					user=new UserDTO();
 					user.setId("-2");
 				}
 			}
 			else { //존재하지 않는 직원
-				user=new userDTO();
+				user=new UserDTO();
 				user.setId("-1");
 			}
 		} catch (SQLException e) {
@@ -92,7 +80,7 @@ public class userDAO {
 	}
 
 	//3. 고객 탈퇴
-	public int userSignout(signoutDTO signout) {
+	public int userSignout(SignoutDTO signout) {
 		int result=0;
 		conn = DBUtil.dbConnection();
 		

@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.shinhan.crud.dto.adminDTO;
-import com.shinhan.crud.dto.loginDTO;
-import com.shinhan.crud.dto.signoutDTO;
+import com.shinhan.crud.dto.AdminDTO;
+import com.shinhan.crud.dto.LoginDTO;
+import com.shinhan.crud.dto.SignoutDTO;
 import com.shinhan.crud.util.DBUtil;
 
-public class adminDAO {
+public class AdminDAO {
 
 	Connection conn;
 	Statement st;
@@ -19,40 +19,30 @@ public class adminDAO {
 	ResultSet rs;
 
 	// 1. 관리자 회원가입
-	public String adminSignup(adminDTO adm) {
-		int result = 0;
-		String signup=null;
+	public int adminSignup(AdminDTO adm) {
+		System.out.println(adm);
+		int result=0;
 		conn = DBUtil.dbConnection(); // setAutoCommit(true)되었음
 
 		try {
-			String sql = "select * from admin where id=?";
+			String sql = "insert into admin values (?,?)";
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, adm.getId());
-			rs = pst.executeQuery();
-			
-			if (rs.next()) {
-				signup= "이미 존재하는 아이디입니다.";
-			} else {
-				sql = "insert into admin values (?,?)";
-				pst = conn.prepareStatement(sql);
-				pst.setString(1, adm.getId());
-				pst.setInt(2, adm.getPw());
-				result = pst.executeUpdate();
-				if(result>0) {
-					signup= "회원가입이 완료되었습니다.";
-				}
-			}
+			pst.setInt(2, adm.getPw());
+			result = pst.executeUpdate();
+		 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			result = -1;
 		} finally {
 			DBUtil.dbDisconnect(conn, pst, rs);
 		}
-		return signup;
+		return result;
 	}
 	
 	//2. 관리자 로그인
-	public adminDTO adminLogin(loginDTO login) {
-		adminDTO admin=null;
+	public AdminDTO adminLogin(LoginDTO login) {
+		AdminDTO admin=null;
 		conn = DBUtil.dbConnection();
 		
 		try {
@@ -63,27 +53,29 @@ public class adminDAO {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 				if(rs.getInt("pw")==(login.getPw())) {
-					admin=new adminDTO();
+					admin=new AdminDTO();
 					admin.setId(rs.getString("id"));
 					admin.setPw(rs.getInt("pw"));
 				}
 				else { //비밀번호 오류
-					admin=new adminDTO();
+					admin=new AdminDTO();
 					admin.setId("-2");
 				}
 			}
 			else { //존재하지 않는 직원
-				admin=new adminDTO();
+				admin=new AdminDTO();
 				admin.setId("-1");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
 		return admin;
 	}
 
 	//3. 관리자 탈퇴
-	public int adminSignout(signoutDTO signout) {
+	public int adminSignout(SignoutDTO signout) {
 		int result=0;
 		conn = DBUtil.dbConnection();
 		

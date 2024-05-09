@@ -2,11 +2,11 @@ package com.shinhan.crud.service;
 
 import java.util.List;
 
-import com.shinhan.crud.dao.ticketDAO;
-import com.shinhan.crud.dto.seatDTO;
+import com.shinhan.crud.dao.TicketDAO;
+import com.shinhan.crud.dto.SeatDTO;
 
-public class ticketService {
-	ticketDAO ticketdao = new ticketDAO();
+public class TicketService {
+	TicketDAO ticketdao = new TicketDAO();
 
 	// 1. 예매 가능한 공연인지 체크
 	public int checkShow(int showId, String userId) {
@@ -14,7 +14,7 @@ public class ticketService {
 	}
 
 	// 2. 해당 공연의 좌석 목록 출력
-	public List<seatDTO> selectByShow(int showId) {
+	public List<SeatDTO> selectByShow(int showId) {
 		return ticketdao.selectByShow(showId);
 	}
 

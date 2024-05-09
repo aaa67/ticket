@@ -8,19 +8,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.shinhan.crud.dto.showDTO;
+import com.shinhan.crud.dto.ShowDTO;
 import com.shinhan.crud.util.DBUtil;
 import com.shinhan.crud.util.DateUtil;
 
-public class showDAO {
+public class ShowDAO {
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
 	ResultSet rs;
 
 	// 1. 공연 추가
-	public String addshow(showDTO show) {
-		String result = null;
+	public int addshow(ShowDTO show) {
+		int result = -1;
 		String sql = "insert into show(id, performer, name, time, location, age, image) values (show_seq.nextval,?,?,TO_TIMESTAMP(?),?,?,?)";
 		conn = DBUtil.dbConnection(); // setAutoCommit(true)되었음
 		try {
@@ -32,7 +32,7 @@ public class showDAO {
 			pst.setInt(5, show.getAge());
 			pst.setString(6, show.getImage());
 			if (pst.executeUpdate() > 0) {
-				result = "공연이 추가되었습니다.";
+				result = 1;
 			} // DML 문장은 executeUpdate, Select문은 execeuteQuery
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -43,15 +43,15 @@ public class showDAO {
 	}
 
 	// 2. 전체 공연 조회
-	public List<showDTO> selectAllShow() {
-		List<showDTO> showList = new ArrayList<showDTO>();
+	public List<ShowDTO> selectAllShow() {
+		List<ShowDTO> showList = new ArrayList<ShowDTO>();
 		String sql = "select * from show";
 		conn = DBUtil.dbConnection();
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
-				showDTO show = makeShow(rs);
+				ShowDTO show = makeShow(rs);
 				showList.add(show);
 			}
 		} catch (SQLException e) {
@@ -63,15 +63,15 @@ public class showDAO {
 	}
 
 	// 3. 예매 오픈 전 공연 조회
-	public List<showDTO> selectClosedShow() {
-		List<showDTO> showList = new ArrayList<showDTO>();
+	public List<ShowDTO> selectClosedShow() {
+		List<ShowDTO> showList = new ArrayList<ShowDTO>();
 		String sql = "select * from show where status='예매 오픈 전'";
 		conn = DBUtil.dbConnection();
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
-				showDTO show = makeShow(rs);
+				ShowDTO show = makeShow(rs);
 				showList.add(show);
 			}
 		} catch (SQLException e) {
@@ -100,15 +100,15 @@ public class showDAO {
 	}
 
 	// 4. 예매 오픈 중이거나 매진인 공연 조회
-	public List<showDTO> selectOpenedShow() {
-		List<showDTO> showList = new ArrayList<showDTO>();
+	public List<ShowDTO> selectOpenedShow() {
+		List<ShowDTO> showList = new ArrayList<ShowDTO>();
 		String sql = "select * from show where status='예매 가능' or status='매진'";
 		conn = DBUtil.dbConnection();
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
-				showDTO show = makeShow(rs);
+				ShowDTO show = makeShow(rs);
 				showList.add(show);
 			}
 		} catch (SQLException e) {
@@ -137,8 +137,8 @@ public class showDAO {
 	}
 
 	// 6. 가수명/공연명으로 공연 검색
-	public List<showDTO> selectByName(String name) {
-		List<showDTO> showList = new ArrayList<showDTO>();
+	public List<ShowDTO> selectByName(String name) {
+		List<ShowDTO> showList = new ArrayList<ShowDTO>();
 		String sql = "select * from show where lower(performer)=? or lower(name)=?";
 		conn = DBUtil.dbConnection();
 		try {
@@ -147,7 +147,7 @@ public class showDAO {
 			pst.setString(2, name.toLowerCase());
 			rs = pst.executeQuery();
 			while (rs.next()) {
-				showDTO show = makeShow(rs);
+				ShowDTO show = makeShow(rs);
 				showList.add(show);
 			}
 		} catch (SQLException e) {
@@ -159,8 +159,8 @@ public class showDAO {
 	}
 
 	// 공연 DTO 생성
-	private showDTO makeShow(ResultSet rs) throws SQLException {
-		showDTO show = new showDTO();
+	private ShowDTO makeShow(ResultSet rs) throws SQLException {
+		ShowDTO show = new ShowDTO();
 
 		// time: timestamp->string 변환
 		//String timeStr = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(rs.getTimestamp("time"));

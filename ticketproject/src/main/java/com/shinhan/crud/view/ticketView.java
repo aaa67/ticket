@@ -2,9 +2,9 @@ package com.shinhan.crud.view;
 
 import java.util.List;
 
-import com.shinhan.crud.dto.myticketDTO;
-import com.shinhan.crud.dto.seatDTO;
-import com.shinhan.crud.dto.showDTO;
+import com.shinhan.crud.dto.MyticketDTO;
+import com.shinhan.crud.dto.SeatDTO;
+import com.shinhan.crud.dto.ShowDTO;
 
 public class ticketView {
 	
@@ -12,9 +12,9 @@ public class ticketView {
 		System.out.println(str);
 	}
 
-	public static void print(List<seatDTO> seatList) {
+	public static void print(List<SeatDTO> seatList) {
 		System.out.printf("=====전체 좌석 조회=========================\n");
-		for(seatDTO seat : seatList) {
+		for(SeatDTO seat : seatList) {
 			
 			System.out.printf("%-10s %-10s %-20s",
 					          "구역: " + seat.getArea(),
@@ -25,10 +25,10 @@ public class ticketView {
 	}
 	
 
-	public static void printMyTicket(List<myticketDTO> myTicket, String str) {
+	public static void printMyTicket(List<MyticketDTO> myTicket, String str) {
 		System.out.printf("=====%s=================================\n", str);
 		if(myTicket.size()>0) {
-			for(myticketDTO ticket : myTicket) {
+			for(MyticketDTO ticket : myTicket) {
 				
 				System.out.printf("%-10s %-10s %-10s %-30s %-15s %-10s %-10s %-10s",
 					 	           "예매 번호: " + ticket.getTicketNum(),

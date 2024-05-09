@@ -2,15 +2,15 @@ package com.shinhan.crud.service;
 
 import java.util.List;
 
-import com.shinhan.crud.dao.showDAO;
-import com.shinhan.crud.dto.showDTO;
+import com.shinhan.crud.dao.ShowDAO;
+import com.shinhan.crud.dto.ShowDTO;
 
 
-public class showService {
-	showDAO showdao = new showDAO();
+public class ShowService {
+	ShowDAO showdao = new ShowDAO();
 
 	// 1. 예매 오픈 중이거나 매진인 공연 조회
-	public List<showDTO> selectAllShow() {
+	public List<ShowDTO> selectAllShow() {
 		return showdao.selectAllShow();
 	}
 
@@ -20,12 +20,12 @@ public class showService {
 	}
 
 	// 3. 예매 오픈 전 공연 조회
-	public List<showDTO> selectClosedShow() {
+	public List<ShowDTO> selectClosedShow() {
 		return showdao.selectClosedShow();
 	}
 
 	// 4. 예매 오픈 중이거나 매진인 공연 조회
-	public List<showDTO> selectOpenedShow() {
+	public List<ShowDTO> selectOpenedShow() {
 		return showdao.selectOpenedShow();
 	}
 
@@ -35,12 +35,12 @@ public class showService {
 	}
 
 	// 6. 가수명/공연명으로 공연 검색
-	public List<showDTO> selectByName(String name) {
+	public List<ShowDTO> selectByName(String name) {
 		return showdao.selectByName(name);
 	}
 
 	// 7. 공연 추가
-	public String addShow(showDTO show) {
+	public int addShow(ShowDTO show) {
 		return showdao.addshow(show);
 	}
 

@@ -90,13 +90,12 @@ body {
 	</nav>
 
 <div class="container mt-3">
-  <form action="login" method="post">
+  <form action="signup" method="post">
       <label for="email">이메일:</label>
       <input type="text" class="form-control" id="email" name="id">
       <label for="pw">비밀번호:</label>
       <input type="password" class="form-control" id="pw" name="pw">
-    <button type="submit" class="login">로그인</button>
-    <a href="signup" class="admin"> 회원가입하기 </a>
+    <button type="submit" class="signup">회원가입</button>
   </form>
 </div>
 <script src="../static/js/jquery-3.7.1.min.js"></script>

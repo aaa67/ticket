@@ -2,7 +2,7 @@ package com.shinhan.crud.view;
 
 import java.util.List;
 
-import com.shinhan.crud.dto.showDTO;
+import com.shinhan.crud.dto.ShowDTO;
 
 
 public class showView {
@@ -13,10 +13,10 @@ public class showView {
 	
 	
 	//1. 공연 목록 반환
-	public static void print(List<showDTO> showList, String str) {
+	public static void print(List<ShowDTO> showList, String str) {
 		System.out.printf("=====%s=========================\n", str);
 		if(showList.size()>0) {
-			for(showDTO show : showList) {
+			for(ShowDTO show : showList) {
 				System.out.printf("%-10s %-25s %-10s %-25s %-20s %-20s %-20s",
 						          "공연 번호: " + show.getId(),
 						          "공연명: " + show.getName(),

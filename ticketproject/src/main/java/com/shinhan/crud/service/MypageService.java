@@ -2,18 +2,18 @@ package com.shinhan.crud.service;
 
 import java.util.List;
 
-import com.shinhan.crud.dao.ticketDAO;
-import com.shinhan.crud.dao.userDAO;
-import com.shinhan.crud.dto.myticketDTO;
-import com.shinhan.crud.dto.seatDTO;
+import com.shinhan.crud.dao.TicketDAO;
+import com.shinhan.crud.dao.UserDAO;
+import com.shinhan.crud.dto.MyticketDTO;
+import com.shinhan.crud.dto.SeatDTO;
 
-public class mypageService {
+public class MypageService {
 	
-	ticketDAO ticketdao = new ticketDAO();
-	userDAO userdao=new userDAO();
+	TicketDAO ticketdao = new TicketDAO();
+	UserDAO userdao=new UserDAO();
 	
 	//1. 예매내역 조회
-	public List<myticketDTO> myTicket(String userId){
+	public List<MyticketDTO> myTicket(String userId){
 		return ticketdao.myTicket(userId);
 	}
 

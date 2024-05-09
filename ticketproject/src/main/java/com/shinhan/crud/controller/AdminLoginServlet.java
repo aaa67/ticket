@@ -1,6 +1,7 @@
 package com.shinhan.crud.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,16 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.shinhan.crud.dto.adminDTO;
-import com.shinhan.crud.dto.loginDTO;
-import com.shinhan.crud.dto.userDTO;
-import com.shinhan.crud.service.memberService;
+import com.shinhan.crud.dto.AdminDTO;
+import com.shinhan.crud.dto.LoginDTO;
+import com.shinhan.crud.dto.UserDTO;
+import com.shinhan.crud.service.MemberService;
 
 @WebServlet("/admin/login")
-public class adminLoginServlet extends HttpServlet {
+public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	List<String> user_list = new ArrayList<>();
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //login창 보여주기 
@@ -34,35 +33,43 @@ public class adminLoginServlet extends HttpServlet {
  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 //사용자가 입력한 ID, pass검사
-		ServletContext app = getServletContext();
-		memberService service = new memberService();
+		MemberService service = new MemberService();
 		String id = request.getParameter("id");
 		int pw = Integer.parseInt(request.getParameter("pw"));
-		loginDTO login=new loginDTO(id, pw, false);
-		adminDTO admin = service.adminLogin(login);
+		LoginDTO login=new LoginDTO(id, pw, true);
+		AdminDTO admin = service.adminLogin(login);
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
 		if(admin==null || admin.getId()=="-1") {			
 			//존재하지않는 유저
-			request.setAttribute("message", "존재하지않는 직원");
+            out.println("<script>alert('존재하지 않는 사용자입니다.'); location.href='login';</script>");
+            out.flush();
 		}else if(admin.getId()=="-2") {
 			//비밀번호 오류
-			request.setAttribute("message", "비밀번호오류 ");
+            out.println("<script>alert('비밀번호 오류입니다.'); location.href='login';</script>");
+            out.flush();
 		}else {
 			//로그인 성공
 			HttpSession session = request.getSession();
 			
-			session.setAttribute("login", admin);
+			session.setAttribute("login", login);
 			
-			String lastAddress = (String)session.getAttribute("lastRequest");
+			response.sendRedirect("main");
+			return;
+			
+			
+			/*String lastAddress = (String)session.getAttribute("lastRequest");
 			if(lastAddress==null || lastAddress.length()==0) {
 				lastAddress = getServletContext().getContextPath();
 			}
 			response.sendRedirect(lastAddress);
-			return;
+			return;*/
 		}
 		
-		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("../main.jsp");
-		rd.forward(request, response);
+		/*RequestDispatcher rd;
+		rd = request.getRequestDispatcher("/main");
+		rd.forward(request, response);*/
+		
 	}
 
 }

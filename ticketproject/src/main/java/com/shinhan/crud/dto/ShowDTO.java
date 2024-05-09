@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class showDTO {
+public class ShowDTO {
 	private int id;
 	private String performer;
 	private String name;

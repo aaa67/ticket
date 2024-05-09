@@ -2,11 +2,8 @@ package com.shinhan.crud.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,49 +13,40 @@ import javax.servlet.http.HttpSession;
 
 import com.shinhan.crud.dto.AdminDTO;
 import com.shinhan.crud.dto.LoginDTO;
-import com.shinhan.crud.dto.UserDTO;
+import com.shinhan.crud.dto.SignoutDTO;
 import com.shinhan.crud.service.MemberService;
 
-@WebServlet("/member/login")
-public class UserLoginServlet extends HttpServlet {
+/**
+ * Servlet implementation class AdminSignoutServlet
+ */
+@WebServlet("/admin/signout")
+public class AdminSignoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	List<String> user_list = new ArrayList<>();
-    
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //login창 보여주기 
 		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("userLogin.jsp");
+		rd = request.getRequestDispatcher("adminSignout.jsp");
 		rd.forward(request, response);
-				
 	}
- 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 //사용자가 입력한 ID, pass검사
-		ServletContext app = getServletContext();
 		MemberService service = new MemberService();
-		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		LoginDTO login = (LoginDTO)session.getAttribute("login");
+		String id=login.getId();
 		int pw = Integer.parseInt(request.getParameter("pw"));
-		LoginDTO login=new LoginDTO(id, pw, false);
-		UserDTO user = service.userLogin(login);
+		SignoutDTO signout = new SignoutDTO(id, pw);
+		int result=service.adminSignout(signout);
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		if(user==null || user.getId()=="-1") {			
+		if(result==0) {			
 			//존재하지않는 유저
-            out.println("<script>alert('존재하지 않는 사용자입니다.'); location.href='login';</script>");
-            out.flush();
-		}else if(user.getId()=="-2") {
-			//비밀번호 오류
-            out.println("<script>alert('비밀번호 오류입니다.'); location.href='login';</script>");
+            out.println("<script>alert('비밀번호 오류입니다.'); location.href='signout';</script>");
             out.flush();
 		}else {
-			//로그인 성공
-			HttpSession session = request.getSession();
-			
-			session.setAttribute("login", login);
-			
-			response.sendRedirect("main");
-			return;
+			//회원 탈퇴 성공
+			out.println("<script>alert('탈퇴 성공');location.href='/ticketproject/main';</script>");
+            out.flush();
 			
 			
 			/*String lastAddress = (String)session.getAttribute("lastRequest");
@@ -68,11 +56,6 @@ public class UserLoginServlet extends HttpServlet {
 			response.sendRedirect(lastAddress);
 			return;*/
 		}
-		
-		/*RequestDispatcher rd;
-		rd = request.getRequestDispatcher("/main");
-		rd.forward(request, response);*/
-		
 	}
 
 }

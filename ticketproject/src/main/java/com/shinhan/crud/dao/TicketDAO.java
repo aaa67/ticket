@@ -8,12 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.shinhan.crud.dto.myticketDTO;
-import com.shinhan.crud.dto.seatDTO;
+import com.shinhan.crud.dto.MyticketDTO;
+import com.shinhan.crud.dto.SeatDTO;
 import com.shinhan.crud.util.DBUtil;
 import com.shinhan.crud.util.DateUtil;
 
-public class ticketDAO {
+public class TicketDAO {
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
@@ -58,8 +58,8 @@ public class ticketDAO {
 	}
 
 	// 3. 해당 공연 좌석 목록 반환
-	public List<seatDTO> selectByShow(int showId) {
-		List<seatDTO> seatList = new ArrayList<seatDTO>();
+	public List<SeatDTO> selectByShow(int showId) {
+		List<SeatDTO> seatList = new ArrayList<SeatDTO>();
 		String sql = "select * from ticket t join seat s on t.seat_id=s.id where t.show_id=? order by t.id asc";
 		conn = DBUtil.dbConnection();
 		try {
@@ -67,7 +67,7 @@ public class ticketDAO {
 			pst.setInt(1, showId);
 			rs = pst.executeQuery();
 			while (rs.next()) {
-				seatDTO seat = makeSeat(rs);
+				SeatDTO seat = makeSeat(rs);
 				seatList.add(seat);
 			}
 		} catch (SQLException e) {
@@ -123,8 +123,8 @@ public class ticketDAO {
 	}
 
 	// 좌석 DTO 만들기
-	private seatDTO makeSeat(ResultSet rs2) throws SQLException {
-		seatDTO seat = new seatDTO();
+	private SeatDTO makeSeat(ResultSet rs2) throws SQLException {
+		SeatDTO seat = new SeatDTO();
 
 		seat.setArea(rs.getString("area"));
 		seat.setSeat(rs.getInt("seat"));
@@ -133,8 +133,8 @@ public class ticketDAO {
 	}
 
 	// 6. 마이페이지 예매내역 조회
-	public List<myticketDTO> myTicket(String userId) {
-		List<myticketDTO> ticketList = new ArrayList<myticketDTO>();
+	public List<MyticketDTO> myTicket(String userId) {
+		List<MyticketDTO> ticketList = new ArrayList<MyticketDTO>();
 		String sql = "select t.id \"예매 번호\", sh.performer 가수명, sh.name 공연명, sh.time 공연일자, sh.location 장소, se.area 구역, se.seat 번호, se.price 가격 "
 				+ " from ticket t join show sh on t.show_id=sh.id " + "              join seat se on t.seat_id=se.id "
 				+ " where t.member_id=? order by \"예매 번호\" asc";
@@ -144,7 +144,7 @@ public class ticketDAO {
 			pst.setString(1, userId);
 			rs = pst.executeQuery();
 			while (rs.next()) {
-				myticketDTO ticket = makeMyTicket(rs);
+				MyticketDTO ticket = makeMyTicket(rs);
 				ticketList.add(ticket);
 			}
 		} catch (SQLException e) {
@@ -254,8 +254,8 @@ public class ticketDAO {
 		}
 
 	// myticketDTO 만들기
-	private myticketDTO makeMyTicket(ResultSet rs) throws SQLException {
-		myticketDTO ticket = new myticketDTO();
+	private MyticketDTO makeMyTicket(ResultSet rs) throws SQLException {
+		MyticketDTO ticket = new MyticketDTO();
 
 		ticket.setTicketNum(rs.getInt("예매 번호"));
 		ticket.setPerformer(rs.getString("가수명"));

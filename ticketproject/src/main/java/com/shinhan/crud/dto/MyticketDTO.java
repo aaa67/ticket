@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class myticketDTO {
+public class MyticketDTO {
 	private int ticketNum;
 	private String performer;
 	private String name;

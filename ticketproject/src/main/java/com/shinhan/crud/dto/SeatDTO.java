@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class seatDTO {
+public class SeatDTO {
 	private String area;
 	private int seat;
 	private String status;

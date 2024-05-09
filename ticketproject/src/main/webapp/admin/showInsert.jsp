@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>로그인 화면</title>
+<title>공연 추가 화면</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,13 +90,25 @@ body {
 	</nav>
 
 <div class="container mt-3">
-  <form action="login" method="post">
-      <label for="email">이메일:</label>
-      <input type="text" class="form-control" id="email" name="id">
-      <label for="pw">비밀번호:</label>
-      <input type="password" class="form-control" id="pw" name="pw">
-    <button type="submit" class="login">로그인</button>
-    <a href="signup" class="admin"> 회원가입하기 </a>
+  <form action="show" enctype="multipart/form-data" method="post">
+      <label for="performer">가수명</label>
+      <input type="text" class="form-control" id="performer" name="performer">
+      <label for="name">공연명</label>
+      <input type="text" class="form-control" id="name" name="name">
+      
+      <label for="location">장소</label>
+      <input type="text" class="form-control" id="location" name="location">
+      
+      <label for="age">연령등급</label>
+      <input type="int" class="form-control" id="age" name="age">
+      
+      <label for="time">공연일자</label>
+      <input type="date" class="form-control" id="time" name="time">
+      
+      <label for="image">공연 이미지</label>
+      <input type="file" class="form-control" id="image" name="image">
+      
+    <button type="submit" class="signup">공연 추가</button>
   </form>
 </div>
 <script src="../static/js/jquery-3.7.1.min.js"></script>
