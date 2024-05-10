@@ -89,43 +89,51 @@ body {
 			<li><a href="${path}/logout" class="logout"> 로그아웃 </a></li>
 			<li><a href="${path}" class="signout"> 회원 탈퇴 </a></li>
 		</ul>
+		<ul class="nav left-align">
+			<li><a href="${path}/member/mypage" class="mypage"> 예매내역 조회
+					및 예매 취소 </a></li>
+			<li><a href="${path}/member/edit" class="edit"> 개인정보 수정 </a></li>
+		</ul>
 	</nav>
 
-	<c:set var="tPath"
-		value="${pageContext.request.servletContext.contextPath}/ticket?showId=${showId}" />
+	<table border="1">
+		<tr>
+			<th>예매 번호</th>
+			<th>공연명</th>
+			<th>가수명</th>
+			<th>공연 일자</th>
+			<th>공연장 위치</th>
+			<th>좌석 구역</th>
+			<th>좌석 번호</th>
+			<th>가격</th>
+		</tr>
+		<c:forEach var="ticket" items="${myTickets}">
+			<tr>
+				<td>${ticket.ticketNum}</td>
+				<td>${ticket.performer}</td>
+				<td>${ticket.name}</td>
+				<td>${ticket.time}</td>
+				<td>${ticket.location}</td>
+				<td>${ticket.area}</td>
+				<td>${ticket.seat}</td>
+				<td>${ticket.price}</td>
+				<td>
+				<button onclick="location.href='${path}/ticket/cancel?ticketId=${ticket.ticketNum}'" class="cancel">예매 취소</button>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
 
-	<h3>1층</h3>
-	<c:forEach var="seat" items="${seatList}">
-		<c:if test="${seat.area eq '1층' and seat.status eq '예매 가능'}">
-			<a href="${tPath}&area=${seat.area}&seat=${seat.seat}">
-				<button class="first O"></button>
-			</a>
-		</c:if>
-		<c:if test="${seat.area eq '1층' and seat.status eq '예매 불가능'}">
-			<button class="X"></button>
-		</c:if>
-	</c:forEach>
-	<h3>2층</h3>
-	<c:forEach var="seat" items="${seatList}">
-		<c:if test="${seat.area eq '2층' and seat.status eq '예매 가능'}">
-			<a href="${tPath}&area=${seat.area}&seat=${seat.seat}">
-				<button class="second O"></button>
-			</a>
-		</c:if>
-		<c:if test="${seat.area eq '2층' and seat.status eq '예매 불가능'}">
-			<button class="X"></button>
-		</c:if>
-	</c:forEach>
-	<h3>3층</h3>
-	<c:forEach var="seat" items="${seatList}">
-		<c:if test="${seat.area eq '3층' and seat.status eq '예매 가능'}">
-			<a href="${tPath}&area=${seat.area}&seat=${seat.seat}">
-				<button class="third O"></button>
-			</a>
-		</c:if>
-		<c:if test="${seat.area eq '3층' and seat.status eq '예매 불가능'}">
-			<button class="X"></button>
-		</c:if>
-	</c:forEach>
+<div class="edit">
+  <form action="edit" method="post">
+  <label>새 정보 입력</label>
+      <label for="pw">새 비밀번호 입력</label>
+      <input type="text" class="form-control" value="" id="pw" name="pw">
+      <label for="ad">새 주소 입력</label>
+      <input type="text" class="form-control" value="" id="ad" name="ad">
+    <button type="submit" class="login">수정</button>
+  </form>
+</div>
+
 </body>
 </html>

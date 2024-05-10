@@ -123,7 +123,7 @@ public class TicketDAO {
 	}
 
 	// 좌석 DTO 만들기
-	private SeatDTO makeSeat(ResultSet rs2) throws SQLException {
+	private SeatDTO makeSeat(ResultSet rs) throws SQLException {
 		SeatDTO seat = new SeatDTO();
 
 		seat.setArea(rs.getString("area"));

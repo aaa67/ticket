@@ -49,7 +49,7 @@ public class UserDAO {
 		conn = DBUtil.dbConnection();
 		
 		try {
-			String sql = "select * from admin where id=? and pw=?";
+			String sql = "select * from member where id=? and pw=?";
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, login.getId());
 			pst.setInt(2, login.getPw());

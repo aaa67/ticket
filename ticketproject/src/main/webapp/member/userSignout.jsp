@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path"
+	value="${pageContext.request.servletContext.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>공연 추가 화면</title>
+<title>사용자 회원탈퇴</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,12 +57,13 @@ body {
 	text-decoration: none;
 }
 
-.add, .logout, .signout {
-	font-family: 'Jua', sans-serif;
-	font-size: 22px;
-	color: #FFFFFF;
-	margin-left: auto;
-	padding: 0 40px;
+.mypage, .logout, .signout {
+    font-family: 'Jua', sans-serif;
+    font-size: 22px;
+    color: #FFFFFF;
+    margin-left: auto;
+    padding: 0 40px;
+    
 }
 
 /* 공연예매 링크 스타일 */
@@ -83,11 +86,11 @@ body {
 	align-items: center;
 }
 
-/* 회원가입 */
+/* 회원탈퇴 */
 .white-box {
 	position: absolute;
 	width: 500px;
-	height: 650px;
+	height: 250px;
 	left: 35%;
 	top: 301px;
 	background: #FAFAFA;
@@ -99,7 +102,7 @@ body {
 	flex-direction: column; /* 내부 요소들을 수직으로 정렬 */
 }
 
-.performer label, .name label, .location label, .age label, .time label, .image label {
+.password label {
 	font-family: "Nanum Gothic", sans-serif;
 	font-weight: 400;
 	font-style: normal;
@@ -108,7 +111,7 @@ body {
 	margin-left: 10px;
 }
 
-.pinput, .ninput, .linput, .ainput, .tinput, .iinput {
+.pinput {
 	width: 450px;
 	height: 50px;
 	background: #FAFAFA;
@@ -120,7 +123,7 @@ body {
 	margin-left: 10px;
 }
 
-.insert {
+.signoutButton {
 	font-family: "Nanum Gothic", sans-serif;
 	font-weight: 400;
 	font-style: normal;
@@ -135,60 +138,36 @@ body {
 }
 </style>
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
+
 <body>
 
-<c:set var="path"
-		value="${pageContext.request.servletContext.contextPath}" />
-
-<nav class="topmenu">
+	<nav class="topmenu">
 		<ul class="nav">
 			<li><a href="${path}/main"><img
 					src="${path}/static/image/logo.png" alt="logo" class="logo"></a></li>
 			<li><a href="${path}/main" class="main"> 공연예매 </a></li>
 		</ul>
 		<ul class="nav right-align">
-			<li><a href="${path}/admin/show" class="add"> 공연 추가 </a></li>
+			<li><a href="${path}/member/mypage" class="mypage"> 마이페이지 </a></li>
 			<li><a href="${path}/logout" class="logout"> 로그아웃 </a></li>
-			<li><a href="${path}/admin/signout" class="signout"> 회원 탈퇴 </a></li>
+			<li><a href="${path}/member/signout" class="signout"> 회원 탈퇴 </a></li>
 		</ul>
 	</nav>
+	
 	<div class="search"></div>
-
-<div class="white-box">
-  <form action="show" enctype="multipart/form-data" method="post">
-  
-  <div class="performer">
-      <label for="performer">가수명</label>
-      <input type="text" class="pinput" id="performer" name="performer">
-      </div>
-      
-      <div class="name">
-      <label for="name">공연명</label>
-      <input type="text" class="ninput" id="name" name="name">
-      </div>
-      
-      <div class="location">
-      <label for="location">장소</label>
-      <input type="text" class="linput" id="location" name="location">
-      </div>
-      
-      <div class="age">
-      <label for="age">연령등급</label>
-      <input type="number" class="ainput" id="age" name="age">
-      </div>
-      
-      <div class="time">
-      <label for="time">공연일자</label>
-      <input type="date" class="tinput" id="time" name="time">
-      </div>
-      
-      <div class="image">
-      <label for="image">공연 이미지</label>
-      <input type="file" class="iinput" id="image" name="image">
-      </div>
-      
-    <button type="submit" class="insert">공연 추가</button>
-  </form>
-</div>
-<script src="../static/js/jquery-3.7.1.min.js"></script>
+	
+	<div class="white-box">
+		<form action="signout" method="post">
+		<div class="password">
+			<label for="pw">비밀번호:</label> <input type="password"
+				class="pinput" id="pw" name="pw">
+				</div>
+			<button type="submit" class="signoutButton">탈퇴</button>
+		</form>
+	</div>
+</body>
+</html>

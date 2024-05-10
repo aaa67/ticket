@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path"
-		value="${pageContext.request.servletContext.contextPath}" />
+	value="${pageContext.request.servletContext.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>공연 예매</title>
+<title>메인</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,7 @@
 
 
 
-
-<!--<style>
+<style>
 body {
 	margin: 0;
 	padding: 0;
@@ -126,8 +125,66 @@ body {
 	height: auto;
 	margin: 10px; /* 이미지 내부 여백 추가 */
 }
-</style>-->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+/* 공연정보 */
+.white-box {
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    top: 301px;
+    background: #FAFAFA;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 30px 30px 0px 0px;
+    padding: 20px; /* 내부 여백 추가 */
+}
+
+.white-box caption{
+font-family: 'Bagel Fat One';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 150px;
+display: flex;
+align-items: left;
+text-align: left;
+}
+
+.white-box table {
+    width: 100%;
+}
+
+.white-box table tr {
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* 오른쪽 테두리 외부 그림자 */
+    margin-bottom: 30px; /* 각 행 사이 간격 조절 */
+    border-spacing: 30px 30px;
+}
+
+.white-box table tr td {
+    padding: 20px; /* 셀 내부 여백 추가 */
+    font-family: 'Jua', sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+
+.white-box table tr td:first-child {
+    width: 100px; /* 이미지 셀 너비 조절 */
+}
+
+.white-box table tr td.content {
+    width: calc(100% - 100px); /* 텍스트 칸 너비 조절 */
+    padding: 10px;
+}
+
+.white-box table tr td img {
+    max-width: 100%; /* 이미지 크기 조절 */
+    margin: auto;
+    display: block;
+}
+
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
 	$(function() {
 		$("#search").on("click", f1);
@@ -157,8 +214,6 @@ body {
 </head>
 
 <body>
-	
-
 	<nav class="topmenu">
 		<ul class="nav">
 			<li><a href="${path}/main"><img
@@ -178,14 +233,13 @@ body {
 		</button>
 	</div>
 
-	<div id="here">
-		<table border="1">
+	<div id="here" class="white-box">
+		<table>
+		<caption>공연 목록</caption>
 			<c:forEach var="show" items="${showlist}">
 				<tr>
-					<td><a href="${path}/showList"><img src="${path}/upload/${show.image}"
-							alt="show image"></a></td>
-					<td>${show.performer}</td>
-					<td>${show.name}</td>
+					<td width=300 height=100 style='table-layout:fixed'><img src="${path}/upload/${show.image}" alt="show image"></td>
+					<td width=300 height=100 style='word-break:break-all;' class="content">${show.performer}<br><br>${show.name}</td>
 				</tr>
 			</c:forEach>
 		</table>

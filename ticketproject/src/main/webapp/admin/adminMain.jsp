@@ -8,15 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>공연 예매</title>
+<title>관리자 메인</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-	href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Jua&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Jua&family=Nanum+Gothic&display=swap"
 	rel="stylesheet">
 
-<!-- <style>
+<style>
 body {
     margin: 0;
     padding: 0;
@@ -125,7 +125,78 @@ body {
     margin: 10px; /* 이미지 내부 여백 추가 */
 }
 
-</style>-->
+.white-box {
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    top: 301px;
+    background: #FAFAFA;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 30px 30px 0px 0px;
+    padding: 20px; /* 내부 여백 추가 */
+}
+
+.white-box caption{
+font-family: 'Bagel Fat One';
+font-style: normal;
+font-weight: 400;
+font-size: 30px;
+line-height: 150px;
+display: flex;
+align-items: left;
+text-align: left;
+}
+
+.white-box table {
+    width: 100%;
+}
+
+.white-box table tr {
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* 오른쪽 테두리 외부 그림자 */
+    margin-bottom: 30px; /* 각 행 사이 간격 조절 */
+    border-spacing: 30px 30px;
+}
+
+.white-box table tr td {
+    padding: 20px; /* 셀 내부 여백 추가 */
+    font-family: 'Jua', sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+
+.white-box table tr td:first-child {
+    width: 100px; /* 이미지 셀 너비 조절 */
+}
+
+.white-box table tr td.content {
+    width: calc(100% - 100px); /* 텍스트 칸 너비 조절 */
+    padding: 10px;
+}
+
+.white-box table tr td img {
+    max-width: 100%; /* 이미지 크기 조절 */
+    margin: auto;
+    display: block;
+}
+
+.white-box table tr td button {
+    position: absolute; /* 절대적 위치 설정 */
+    right: 70px; /* 표의 맨 오른쪽에 위치 */
+    background-color: #FF7575; /* 배경색 지정 */
+    color: #FFFFFF; /* 글자색 지정 */
+    border: none; /* 테두리 없애기 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    padding: 5px 10px; /* 내부 여백 추가 */
+}
+
+/* 버튼에 호버 효과를 추가할 경우 */
+.white-box table tr td button:hover {
+    background-color: #D84315; /* 호버 시 배경색 변경 */
+    cursor: pointer; /* 호버 시 커서 변경 */
+}
+
+</style>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -184,29 +255,26 @@ body {
 3. 매진
 4. 예매 마감
  -->
-	<div id="here">
-		<table border="1">
+	<div id="here" class="white-box">
+		<table>
+		<caption>공연 목록</caption>
 			<c:forEach var="show" items="${closedShowList}">
 				<tr>
-					<td><img src="${path}/upload/${show.image}" alt="image"></td>
-					<td>${show.performer}</td>
-					<td>${show.name}</td>
+					<td width=300 height=100 style='table-layout:fixed'><img src="${path}/upload/${show.image}" alt="image"></td>
+					<td width=300 height=100 style='word-break:break-all;' class="content">${show.performer}<br><br>${show.name}</td>
 					<c:if test="${show.status eq '예매 오픈 전'}">
-						<td><button
-								onclick="location.href='${path}/admin/open?id=${show.id}'">예매
-								오픈하기</button></td>
+						<td><button onclick="location.href='${path}/admin/open?id=${show.id}'">
+						예매 오픈하기</button></td>
 					</c:if>
 				</tr>
 			</c:forEach>
 			<c:forEach var="show" items="${openedShowList}">
 				<tr>
-					<td><img src="${path}/upload/${show.image}" alt="image"></td>
-					<td>${show.performer}</td>
-					<td>${show.name}</td>
+					<td width=300 height=100 style='table-layout:fixed'><img src="${path}/upload/${show.image}" alt="image"></td>
+					<td width=300 height=100 style='word-break:break-all;' class="content">${show.performer}<br><br>${show.name}</td>
 					<c:if test="${show.status eq '예매 가능' or show.status eq '매진'}">
-						<td><button
-								onclick="location.href='${path}/admin/close?id=${show.id}'">예매
-								마감하기</button></td>
+						<td><button onclick="location.href='${path}/admin/close?id=${show.id}'">
+						예매 마감하기</button></td>
 					</c:if>
 					<c:if test="${show.status eq '예매 마감'}">
 						<td><button></button></td>
