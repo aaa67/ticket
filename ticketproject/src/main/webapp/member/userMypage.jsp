@@ -170,7 +170,7 @@ body {
 }
 
 .white-box table tr td {
-	padding: 20px; /* 셀 내부 여백 추가 */
+	padding: 10px; /* 셀 내부 여백 추가 */
 	font-family: "Jua", sans-serif;
 	font-size: 14px;
 	color: #000000;
@@ -282,26 +282,25 @@ body {
 	<div class="white-box">
 		<table>
 			<tr>
-				<th width=20>예매 번호</th>
+				<th width=10>No.</th>
 				<th width=50>공연명</th>
 				<th width=50>가수명</th>
-				<th width=70>공연 일자</th>
+				<th width=65>공연 일자</th>
 				<th width=150>공연장 위치</th>
 				<th width=100>좌석 구역</th>
 				<th width=100>좌석 번호</th>
-				<th width=10>가격</th>
-				<th></th>
+				<th width=25>가격</th>
 			</tr>
 			<c:forEach var="ticket" items="${myTickets}">
 				<tr>
-					<td width=20>${ticket.ticketNum}</td>
+					<td width=10>${ticket.ticketNum}</td>
 					<td width=50>${ticket.performer}</td>
 					<td width=50>${ticket.name}</td>
-					<td width=70>${ticket.time}</td>
+					<td width=65>${ticket.time}</td>
 					<td width=150>${ticket.location}</td>
 					<td width=100>${ticket.area}</td>
 					<td width=100>${ticket.seat}</td>
-					<td width=10>${ticket.price}</td>
+					<td width=20>${ticket.price}</td>
 					<td>
 						<button
 							onclick="location.href='${path}/ticket/cancel?ticketId=${ticket.ticketNum}'"
