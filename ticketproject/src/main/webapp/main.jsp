@@ -65,6 +65,23 @@ body {
 	color: #FFFFFF;
 	margin-left: auto;
 	padding: 0 40px;
+	position: relative; 
+}
+
+.admin::before, .user::before {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 0;
+	height: 3px;
+	background-color: #FFFFFF;
+	transition: width 0.8s; 
+	z-index: 1;
+}
+
+.admin:hover::before, .user:hover::before {
+	width: 100%;
 }
 
 /* 공연예매 링크 스타일 */
@@ -128,60 +145,64 @@ body {
 
 /* 공연정보 */
 .white-box {
-    position: absolute;
-    width: 50%;
-    left: 25%;
-    top: 301px;
-    background: #FAFAFA;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    border-radius: 30px 30px 0px 0px;
-    padding: 20px; /* 내부 여백 추가 */
+	position: absolute;
+	width: 50%;
+	left: 25%;
+	top: 301px;
+	background: #FAFAFA;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+	border-radius: 30px 30px 0px 0px;
+	padding: 20px; /* 내부 여백 추가 */
 }
 
-.white-box caption{
-font-family: 'Bagel Fat One';
-font-style: normal;
-font-weight: 400;
-font-size: 30px;
-line-height: 150px;
-display: flex;
-align-items: left;
-text-align: left;
+.white-box caption {
+	font-family: 'Bagel Fat One';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 30px;
+	line-height: 150px;
+	display: flex;
+	align-items: left;
+	text-align: left;
 }
 
 .white-box table {
-    width: 100%;
+	width: 100%;
 }
 
 .white-box table tr {
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* 오른쪽 테두리 외부 그림자 */
-    margin-bottom: 30px; /* 각 행 사이 간격 조절 */
-    border-spacing: 30px 30px;
+	border-radius: 10px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+	margin-bottom: 30px;
+	border-spacing: 30px 30px;
 }
 
 .white-box table tr td {
-    padding: 20px; /* 셀 내부 여백 추가 */
-    font-family: 'Jua', sans-serif;
+	padding: 20px;
+	font-family: 'Jua', sans-serif;
 	font-size: 14px;
 	color: #000000;
 }
 
 .white-box table tr td:first-child {
-    width: 100px; /* 이미지 셀 너비 조절 */
+	width: 100px;
 }
 
 .white-box table tr td.content {
-    width: calc(100% - 100px); /* 텍스트 칸 너비 조절 */
-    padding: 10px;
+	width: calc(100% - 100px);
+	padding: 10px;
 }
 
 .white-box table tr td img {
-    max-width: 100%; /* 이미지 크기 조절 */
-    margin: auto;
-    display: block;
+	max-width: 100%;
+	margin: auto;
+	display: block;
 }
 
+.white-box table tr td a {
+	color: #000000;
+	text-decoration: none !important;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -212,6 +233,8 @@ text-align: left;
 </script>
 
 </head>
+
+<!-- <a href="${path}/detail?id=${show.id}"> -->
 
 <body>
 	<nav class="topmenu">

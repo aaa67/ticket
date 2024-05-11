@@ -63,7 +63,23 @@ body {
     color: #FFFFFF;
     margin-left: auto;
     padding: 0 40px;
-    
+    position: relative;
+}
+
+.mypage::before, .logout::before, .signout::before {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 0;
+	height: 3px;
+	background-color: #FFFFFF;
+	transition: width 0.8s; 
+	z-index: 1;
+}
+
+.mypage:hover::before, .logout:hover::before, .signout:hover::before {
+	width: 100%; 
 }
 
 /* 공연예매 링크 스타일 */
@@ -78,10 +94,10 @@ body {
 /* 검색창 */
 .search {
     position: absolute;
-    width: 100%; /* 화면에 꽉 차도록 설정 */
+    width: 100%; 
     height: 125px;
     background: #FF7575;
-    top: 85px; /* 이전 요소와의 간격 조정 */
+    top: 85px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,23 +109,23 @@ body {
 
 .search input[type="text"] {
     box-sizing: border-box;
-    width: calc(100% - 360px); /* 버튼을 고려한 너비 조절 */
+    width: calc(100% - 360px); 
     height: 49px;
     padding: 0 20px;
-    margin-left: 20px; /* 왼쪽 여백 조절 */
+    margin-left: 20px; 
     background: #F2F2F2;
     border: 1px solid #FFFFFF;
     border-radius: 25px;
     font-family: 'Noto Sans', sans-serif;
     font-size: 14px;
     color: #B2B2B2;
-    outline: none; /* 포커스 시 테두리 제거 */
+    outline: none; 
 }
 
 .search button {
     position: absolute;
     top: 50%;
-    right: 200px; /* 오른쪽 여백 조절 */
+    right: 200px;
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
@@ -120,9 +136,9 @@ body {
 }
 
 .search button img {
-    width: 20px; /* 이미지 크기 조절 */
+    width: 20px; 
     height: auto;
-    margin: 10px; /* 이미지 내부 여백 추가 */
+    margin: 10px; 
 }
 
 .white-box {
@@ -133,7 +149,7 @@ body {
     background: #FAFAFA;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
     border-radius: 30px 30px 0px 0px;
-    padding: 20px; /* 내부 여백 추가 */
+    padding: 20px;
 }
 
 .white-box caption{
@@ -153,57 +169,64 @@ text-align: left;
 
 .white-box table tr {
     border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* 오른쪽 테두리 외부 그림자 */
-    margin-bottom: 30px; /* 각 행 사이 간격 조절 */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); 
+    margin-bottom: 30px; 
     border-spacing: 30px 30px;
 }
 
 .white-box table tr td {
-    padding: 20px; /* 셀 내부 여백 추가 */
+    padding: 20px; 
     font-family: 'Jua', sans-serif;
 	font-size: 14px;
 	color: #000000;
 }
 
 .white-box table tr td:first-child {
-    width: 100px; /* 이미지 셀 너비 조절 */
+    width: 100px; 
 }
 
 .white-box table tr td.content {
-    width: calc(100% - 100px); /* 텍스트 칸 너비 조절 */
+    width: calc(100% - 100px);
     padding: 10px;
 }
 
 .white-box table tr td img {
-    max-width: 100%; /* 이미지 크기 조절 */
+    max-width: 100%;
     margin: auto;
     display: block;
 }
 
 .ticket {
-    position: absolute; /* 절대적 위치 설정 */
-    right: 70px; /* 표의 맨 오른쪽에 위치 */
-    background-color: #FF7575; /* 배경색 지정 */
-    color: #FFFFFF; /* 글자색 지정 */
-    border: none; /* 테두리 없애기 */
-    border-radius: 10px; /* 모서리 둥글게 */
-    padding: 5px 10px; /* 내부 여백 추가 */
+    position: absolute; 
+    right: 70px; 
+    background-color: #FF7575; 
+    color: #FFFFFF; 
+    border: none;
+    border-radius: 10px; 
+    padding: 5px 10px;
+    transition: all 0.5s;  
 }
 
 .close{
-    position: absolute; /* 절대적 위치 설정 */
-    right: 70px; /* 표의 맨 오른쪽에 위치 */
-    background-color: #939393; /* 배경색 지정 */
-    color: #FFFFFF; /* 글자색 지정 */
-    border: none; /* 테두리 없애기 */
-    border-radius: 10px; /* 모서리 둥글게 */
-    padding: 5px 10px; /* 내부 여백 추가 */
+    position: absolute; 
+    right: 70px; 
+    background-color: #939393; 
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px; 
+    padding: 5px 10px;
 }
 
 /* 버튼에 호버 효과를 추가할 경우 */
 .ticket:hover {
-    background-color: #D84315; /* 호버 시 배경색 변경 */
-    cursor: pointer; /* 호버 시 커서 변경 */
+    background-color: #FFB775; 
+    cursor: pointer;
+    transition: all 0.5s;  
+}
+
+.white-box table tr td a {
+	color: #000000;
+	text-decoration: none !important;
 }
 
 </style>

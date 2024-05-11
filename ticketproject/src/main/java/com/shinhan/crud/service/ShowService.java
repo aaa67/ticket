@@ -5,7 +5,6 @@ import java.util.List;
 import com.shinhan.crud.dao.ShowDAO;
 import com.shinhan.crud.dto.ShowDTO;
 
-
 public class ShowService {
 	ShowDAO showdao = new ShowDAO();
 
@@ -22,6 +21,11 @@ public class ShowService {
 	// 3. 예매 오픈 전 공연 조회
 	public List<ShowDTO> selectClosedShow() {
 		return showdao.selectClosedShow();
+	}
+
+	// 공연 상세정보
+	public ShowDTO selectById(int showId) {
+		return showdao.selectById(showId);
 	}
 
 	// 4. 예매 오픈 중이거나 매진인 공연 조회

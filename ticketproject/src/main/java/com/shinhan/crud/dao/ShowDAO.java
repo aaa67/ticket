@@ -61,6 +61,26 @@ public class ShowDAO {
 		}
 		return showList;
 	}
+	
+	//공연 상세정보
+	public ShowDTO selectById(int showId) {
+		ShowDTO show = new ShowDTO();
+		String sql = "select * from show where id=?";
+		conn = DBUtil.dbConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, showId);
+			pst.executeUpdate();
+			while (rs.next()) {
+				show = makeShow(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisconnect(conn, pst, rs);
+		}
+		return show;
+	}
 
 	// 3. 예매 오픈 전 공연 조회
 	public List<ShowDTO> selectClosedShow() {

@@ -64,6 +64,23 @@ body {
 	color: #FFFFFF;
 	margin-left: auto;
 	padding: 0 40px;
+	position: relative;
+}
+
+.mypage::before, .logout::before, .signout::before {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 0;
+	height: 3px;
+	background-color: #FFFFFF;
+	transition: width 0.8s; 
+	z-index: 1;
+}
+
+.mypage:hover::before, .logout:hover::before, .signout:hover::before {
+	width: 100%; 
 }
 
 .mypage2, .edit {
@@ -84,10 +101,10 @@ body {
 /* 검색창 */
 .search {
 	position: absolute;
-	width: 100%; /* 화면에 꽉 차도록 설정 */
+	width: 100%; 
 	height: 125px;
 	background: #FF7575;
-	top: 85px; /* 이전 요소와의 간격 조정 */
+	top: 85px; 
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -112,7 +129,7 @@ body {
 	margin-left: 30px;
 	font-family: 'Bagel Fat One', sans-serif;
 	font-size: 30px;
-	color: #000000; /* 검은색 */
+	color: #000000; 
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
@@ -129,22 +146,22 @@ body {
 
 /* 1층 좌석 버튼 */
 .white-box .first {
-	background-color: #7C4FFF; /* 보라색 */
+	background-color: #7C4FFF; 
 }
 
 /* 2층 좌석 버튼 */
 .white-box .second {
-	background-color: #FF9776; /* 주황색 */
+	background-color: #FF9776;
 }
 
 /* 3층 좌석 버튼 */
 .white-box .third {
-	background-color: #FFF389; /* 노란색 */
+	background-color: #FFF389; 
 }
 
 /* 예매 불가능 좌석 표시 */
 .white-box .X {
-	background-color: #CCCCCC; /* 회색 */
+	background-color: #CCCCCC;
 }
 
 .white-box .seat-row {

@@ -56,12 +56,41 @@ body {
 	text-decoration: none;
 }
 
+.mypage::before{
+    content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 10%;
+	width: 80%;
+	height: 3px;
+	background-color: #FFFFFF;
+	z-index: 1;
+}
+
+.logout::before, .signout::before {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 0;
+	height: 3px;
+	background-color: #FFFFFF;
+	transition: width 0.8s;
+	z-index: 1;
+}
+
+.logout:hover::before, .signout:hover::before {
+	width: 100%;
+}
+
+
 .mypage, .logout, .signout {
 	font-family: 'Jua', sans-serif;
 	font-size: 22px;
 	color: #FFFFFF;
 	margin-left: auto;
 	padding: 0 40px;
+	position: relative;
 }
 
 .mypage2, .edit {
@@ -82,10 +111,10 @@ body {
 /* 검색창 */
 .search {
 	position: absolute;
-	width: 100%; /* 화면에 꽉 차도록 설정 */
+	width: 100%; 
 	height: 125px;
 	background: #FF7575;
-	top: 85px; /* 이전 요소와의 간격 조정 */
+	top: 85px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -99,7 +128,7 @@ body {
 	background: #FAFAFA;
 	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 	border-radius: 30px 30px 0px 0px;
-	padding: 20px; /* 내부 여백 추가 */
+	padding: 20px; 
 }
 
 .white-box caption {
@@ -119,8 +148,8 @@ body {
 
 .white-box table tr {
 	border-radius: 10px;
-	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* 오른쪽 테두리 외부 그림자 */
-	margin-bottom: 30px; /* 각 행 사이 간격 조절 */
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); 
+	margin-bottom: 30px; 
 	border-spacing: 30px 30px;
 }
 
@@ -132,23 +161,23 @@ body {
 }
 
 .white-box table tr td {
-	padding: 10px; /* 셀 내부 여백 추가 */
+	padding: 10px; 
 	font-family: "Jua", sans-serif;
 	font-size: 14px;
 	color: #000000;
 }
 
 .white-box table tr td:first-child {
-	width: 100px; /* 이미지 셀 너비 조절 */
+	width: 100px; 
 }
 
 .white-box table tr td.content {
-	width: calc(100% - 100px); /* 텍스트 칸 너비 조절 */
+	width: calc(100% - 100px); 
 	padding: 10px;
 }
 
 .white-box table tr td img {
-	max-width: 100%; /* 이미지 크기 조절 */
+	max-width: 100%; 
 	margin: auto;
 	display: block;
 }
@@ -157,63 +186,63 @@ body {
     width:80px;
 	font-family: 'Jua', sans-serif;
 	font-size: 14px;
-	background-color: #FF7575; /* 배경색 지정 */
-	color: #FFFFFF; /* 글자색 지정 */
-	border: none; /* 테두리 없애기 */
-	border-radius: 10px; /* 모서리 둥글게 */
-	padding: 5px 10px; /* 내부 여백 추가 */
+	background-color: #FF7575; 
+	color: #FFFFFF; 
+	border: none; 
+	border-radius: 10px; 
+	padding: 5px 10px; 
 }
 
 /* 버튼에 호버 효과를 추가할 경우 */
 .cancel:hover {
-	background-color: #D84315; /* 호버 시 배경색 변경 */
-	cursor: pointer; /* 호버 시 커서 변경 */
+	background-color: #D84315; 
+	cursor: pointer; 
 }
 
 /* 왼쪽 메뉴 */
 .left-align {
 	position: absolute;
 	top: 301px;
-	left: -100px; /* 조정 가능 */
+	left: -100px; 
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 }
 
 .left-align li {
-	margin-bottom: 30px; /* 각 요소 사이 간격 조정 */
+	margin-bottom: 30px; 
 }
 
 .mypage2 {
 	display: block;
-	width: 330px; /* 사각형의 너비 */
-	height: 50px; /* 사각형의 높이 */
-	background-color: #FF7575; /* 배경색 지정 */
-	border: none; /* 테두리 없애기 */
-	border-radius: 20px; /* 모서리 둥글게 */
-	text-align: center; /* 텍스트 가운데 정렬 */
-	line-height: 50px; /* 텍스트 수직 가운데 정렬 */
+	width: 330px; 
+	height: 50px; 
+	background-color: #FF7575; 
+	border: none; 
+	border-radius: 20px; 
+	text-align: center;
+	line-height: 50px; 
 	font-family: 'Jua', sans-serif;
 	font-size: 17px;
 	color: #FFFFFF;
-	text-decoration: none; /* 밑줄 제거 */
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); /* 그림자 추가 */
+	text-decoration: none;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); 
 }
 
 .edit {
 	display: block;
-	width: 330px; /* 사각형의 너비 */
-	height: 50px; /* 사각형의 높이 */
-	background-color: #FAFAFA; /* 배경색 지정 */
-	border: none; /* 테두리 없애기 */
-	border-radius: 20px; /* 모서리 둥글게 */
-	text-align: center; /* 텍스트 가운데 정렬 */
-	line-height: 50px; /* 텍스트 수직 가운데 정렬 */
+	width: 330px; 
+	height: 50px;
+	background-color: #FAFAFA;
+	border: none; 
+	border-radius: 20px;
+	text-align: center; 
+	line-height: 50px; 
 	font-family: 'Jua', sans-serif;
 	font-size: 17px;
 	color: #000000;
-	text-decoration: none; /* 밑줄 제거 */
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); /* 그림자 추가 */
+	text-decoration: none; 
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); 
 }
 
 </style>

@@ -12,8 +12,8 @@
 	<table>
 		<c:forEach var="show" items="${searchList}">
 			<tr>
-				<td width=300 height=100 style='table-layout:fixed'><img src="${path}/upload/${show.image}" alt="image"></td>
-				<td width=300 height=100 style='word-break:break-all;' class="content">${show.performer}<br><br>${show.name}</td>
+				<td width=300 height=100 style='table-layout:fixed'><a href="${path}/detail?id=${show.id}"><img src="${path}/upload/${show.image}" alt="image"></a></td>
+				<td width=300 height=100 style='word-break:break-all;' class="content"><a href="${path}/detail?id=${show.id}">${show.performer}<br><br>${show.name}</a></td>
 			</tr>
 		</c:forEach>
 	</table>

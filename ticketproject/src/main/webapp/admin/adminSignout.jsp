@@ -57,12 +57,40 @@ body {
 	text-decoration: none;
 }
 
+.signout::before{
+    content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 10%;
+	width: 80%;
+	height: 3px;
+	background-color: #FFFFFF;
+	z-index: 1;
+}
+
+.logout::before, .add::before {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 0;
+	height: 3px;
+	background-color: #FFFFFF;
+	transition: width 0.8s; 
+	z-index: 1;
+}
+
+.logout:hover::before, .add:hover::before {
+	width: 100%; 
+}
+
 .add, .logout, .signout {
     font-family: 'Jua', sans-serif;
     font-size: 22px;
     color: #FFFFFF;
     margin-left: auto;
     padding: 0 40px;
+    position: relative;
     
 }
 
@@ -77,10 +105,10 @@ body {
 
 .search {
 	position: absolute;
-	width: 100%; /* 화면에 꽉 차도록 설정 */
+	width: 100%; 
 	height: 125px;
 	background: #FF7575;
-	top: 85px; /* 이전 요소와의 간격 조정 */
+	top: 85px; 
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -96,10 +124,10 @@ body {
 	background: #FAFAFA;
 	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 	border-radius: 30px;
-	padding: 20px; /* 내부 여백 추가 */
-	display: flex; /* 내부 요소들을 수평으로 정렬하기 위해 flex 사용 */
-	justify-content: center; /* 내부 요소들을 가운데로 정렬 */
-	flex-direction: column; /* 내부 요소들을 수직으로 정렬 */
+	padding: 20px; 
+	display: flex;
+	justify-content: center; 
+	flex-direction: column; 
 }
 
 .password label {
@@ -107,7 +135,7 @@ body {
 	font-weight: 400;
 	font-style: normal;
 	color: #000000;
-	margin-bottom: 10px; /* label 간격 조절 */
+	margin-bottom: 10px; 
 	margin-left: 10px;
 }
 
@@ -119,7 +147,7 @@ body {
 	border-left: none;
 	border-right: none;
 	border-bottom: 1px solid black;
-	margin-bottom: 20px; /* input 간격 조절 */
+	margin-bottom: 20px; 
 	margin-left: 10px;
 }
 
