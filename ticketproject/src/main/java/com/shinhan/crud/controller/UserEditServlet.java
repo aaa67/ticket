@@ -2,7 +2,6 @@ package com.shinhan.crud.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.shinhan.crud.dto.LoginDTO;
-import com.shinhan.crud.dto.MyticketDTO;
 import com.shinhan.crud.service.MypageService;
-import com.shinhan.crud.service.ShowService;
 
 @WebServlet("/member/edit")
 public class UserEditServlet extends HttpServlet {

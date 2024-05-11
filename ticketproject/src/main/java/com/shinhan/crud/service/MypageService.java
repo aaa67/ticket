@@ -5,7 +5,6 @@ import java.util.List;
 import com.shinhan.crud.dao.TicketDAO;
 import com.shinhan.crud.dao.UserDAO;
 import com.shinhan.crud.dto.MyticketDTO;
-import com.shinhan.crud.dto.SeatDTO;
 
 public class MypageService {
 	

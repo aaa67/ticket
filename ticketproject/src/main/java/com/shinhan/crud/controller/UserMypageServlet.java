@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.shinhan.crud.dto.LoginDTO;
 import com.shinhan.crud.dto.MyticketDTO;
 import com.shinhan.crud.service.MypageService;
-import com.shinhan.crud.service.ShowService;
 
 /**
  * Servlet implementation class UserMypageServlet

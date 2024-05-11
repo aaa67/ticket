@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.shinhan.crud.dto.MyticketDTO;
 import com.shinhan.crud.dto.SeatDTO;
-import com.shinhan.crud.dto.ShowDTO;
 
 public class ticketView {
 	

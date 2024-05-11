@@ -1,8 +1,5 @@
 package com.shinhan.crud.dto;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
