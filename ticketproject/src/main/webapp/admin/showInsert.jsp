@@ -143,9 +143,9 @@ body {
 
 <nav class="topmenu">
 		<ul class="nav">
-			<li><a href="${path}/main"><img
+			<li><a href="${path}/admin/main"><img
 					src="${path}/static/image/logo.png" alt="logo" class="logo"></a></li>
-			<li><a href="${path}/main" class="main"> 공연예매 </a></li>
+			<li><a href="${path}/admin/main" class="main"> 공연예매 </a></li>
 		</ul>
 		<ul class="nav right-align">
 			<li><a href="${path}/admin/show" class="add"> 공연 추가 </a></li>

@@ -91,44 +91,6 @@ body {
 	align-items: center;
 }
 
-.search-container {
-	position: relative;
-}
-
-.search input[type="text"] {
-	box-sizing: border-box;
-	width: calc(100% - 360px); /* 버튼을 고려한 너비 조절 */
-	height: 49px;
-	padding: 0 20px;
-	margin-left: 20px; /* 왼쪽 여백 조절 */
-	background: #F2F2F2;
-	border: 1px solid #FFFFFF;
-	border-radius: 25px;
-	font-family: 'Noto Sans', sans-serif;
-	font-size: 14px;
-	color: #B2B2B2;
-	outline: none; /* 포커스 시 테두리 제거 */
-}
-
-.search button {
-	position: absolute;
-	top: 50%;
-	right: 200px; /* 오른쪽 여백 조절 */
-	transform: translateY(-50%);
-	width: 40px;
-	height: 40px;
-	border: none;
-	background: #F2F2F2;
-	border-radius: 20px;
-	cursor: pointer;
-}
-
-.search button img {
-	width: 20px; /* 이미지 크기 조절 */
-	height: auto;
-	margin: 10px; /* 이미지 내부 여백 추가 */
-}
-
 .white-box {
 	position: absolute;
 	width: 50%;
@@ -260,14 +222,14 @@ body {
 <body>
 	<nav class="topmenu">
 		<ul class="nav">
-			<li><a href="${path}/main"><img
+			<li><a href="${path}/member/main"><img
 					src="${path}/static/image/logo.png" alt="logo" class="logo"></a></li>
-			<li><a href="${path}/main" class="main"> 공연예매 </a></li>
+			<li><a href="${path}/member/main" class="main"> 공연예매 </a></li>
 		</ul>
 		<ul class="nav right-align">
 			<li><a href="${path}/member/mypage" class="mypage"> 마이페이지 </a></li>
 			<li><a href="${path}/logout" class="logout"> 로그아웃 </a></li>
-			<li><a href="${path}" class="signout"> 회원 탈퇴 </a></li>
+			<li><a href="${path}/member/signout" class="signout"> 회원 탈퇴 </a></li>
 		</ul>
 	</nav>
 
@@ -300,7 +262,7 @@ body {
 					<td width=150>${ticket.location}</td>
 					<td width=100>${ticket.area}</td>
 					<td width=100>${ticket.seat}</td>
-					<td width=20>${ticket.price}</td>
+					<td width=25>${ticket.price}</td>
 					<td>
 						<button
 							onclick="location.href='${path}/ticket/cancel?ticketId=${ticket.ticketNum}'"

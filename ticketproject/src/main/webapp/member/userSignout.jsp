@@ -147,9 +147,9 @@ body {
 
 	<nav class="topmenu">
 		<ul class="nav">
-			<li><a href="${path}/main"><img
+			<li><a href="${path}/admin/main"><img
 					src="${path}/static/image/logo.png" alt="logo" class="logo"></a></li>
-			<li><a href="${path}/main" class="main"> 공연예매 </a></li>
+			<li><a href="${path}/admin/main" class="main"> 공연예매 </a></li>
 		</ul>
 		<ul class="nav right-align">
 			<li><a href="${path}/member/mypage" class="mypage"> 마이페이지 </a></li>
@@ -163,7 +163,7 @@ body {
 	<div class="white-box">
 		<form action="signout" method="post">
 		<div class="password">
-			<label for="pw">비밀번호:</label> <input type="password"
+			<label for="pw">비밀번호 입력</label> <input type="password"
 				class="pinput" id="pw" name="pw">
 				</div>
 			<button type="submit" class="signoutButton">탈퇴</button>

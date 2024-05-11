@@ -98,7 +98,8 @@ body {
 	flex-direction: column; /* 내부 요소들을 수직으로 정렬 */
 }
 
-.email label, .password label, .name label, .address label, .birth label {
+.email label, .password label, .name label, .address label, .birth label
+	{
 	font-family: "Nanum Gothic", sans-serif;
 	font-weight: 400;
 	font-style: normal;
@@ -174,8 +175,8 @@ body {
 			</div>
 
 			<div class="address">
-				<label for="address">주소:</label> <br>
-				<input type="text" class="ainput" id="address" name="address">
+				<label for="address">주소:</label> <br> <input type="text"
+					class="ainput" id="address" name="address">
 			</div>
 
 			<div class="birth">
@@ -187,3 +188,5 @@ body {
 		</form>
 	</div>
 	<script src="../static/js/jquery-3.7.1.min.js"></script>
+</body>
+</html>

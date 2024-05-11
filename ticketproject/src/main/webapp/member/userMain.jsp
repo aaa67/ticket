@@ -242,9 +242,9 @@ text-align: left;
 
 	<nav class="topmenu">
 		<ul class="nav">
-			<li><a href="${path}/main"><img
+			<li><a href="${path}/member/main"><img
 					src="${path}/static/image/logo.png" alt="logo" class="logo"></a></li>
-			<li><a href="${path}/main" class="main"> 공연예매 </a></li>
+			<li><a href="${path}/member/main" class="main"> 공연예매 </a></li>
 		</ul>
 		<ul class="nav right-align">
 			<li><a href="${path}/member/mypage" class="mypage"> 마이페이지 </a></li>

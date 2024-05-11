@@ -8,28 +8,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.shinhan.crud.dto.LoginDTO;
+import com.shinhan.crud.service.MemberService;
 import com.shinhan.crud.service.ShowService;
 
-/**
- * Servlet implementation class mainServlet
- */
+
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
        
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ShowService service = new ShowService();
-		request.setAttribute("showlist", service.selectAllShow());
-		
-		request.getRequestDispatcher("main.jsp").forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        ShowService service = new ShowService();
+        request.setAttribute("showlist", service.selectAllShow());
+        
+        request.getRequestDispatcher("main.jsp").forward(request, response);
+    }
 
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

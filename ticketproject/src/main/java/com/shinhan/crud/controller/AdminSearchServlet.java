@@ -31,7 +31,7 @@ public class AdminSearchServlet extends HttpServlet {
 		ShowService service = new ShowService();
 		List<ShowDTO> datas=service.selectByName(name);
 		request.setAttribute("searchList", datas);
-		request.getRequestDispatcher("./main/adminSearch.jsp").forward(request, response);
+		request.getRequestDispatcher("./main/search.jsp").forward(request, response);
  
 		
 		/*
